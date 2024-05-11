@@ -25,7 +25,9 @@ func GETProduct(w http.ResponseWriter, r *http.Request) {
 	idProduct, _ := strconv.Atoi(r.PathValue("id"))
 	product := models.GetProduct(uint(idProduct))
 
-	fmt.Fprintf(w, "El producto %s se creo el %s", product.Name, product.CreatedAt)
+	w.Header().Set("Content-Type", "application/json")
+
+	json.NewEncoder(w).Encode(product)
 }
 
 func GetHandlers(route *http.ServeMux) {
