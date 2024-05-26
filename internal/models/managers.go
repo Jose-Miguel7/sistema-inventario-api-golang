@@ -10,10 +10,14 @@ func CreateProduct(product *Product) error {
 	return nil
 }
 
-func GetProduct(id uint) *Product {
+func GetProduct(id uint) (*Product, error) {
 	db, _ := database.GetDatabase()
 	var product Product
-	db.First(&product, id)
+	result := db.First(&product, id)
 
-	return &product
+	if result.Error != nil {
+		return &product, result.Error
+	}
+
+	return &product, nil
 }

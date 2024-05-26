@@ -1,6 +1,8 @@
 package models
 
-import "github.com/Jose-Miguel7/api-pos-go/internal/database"
+import (
+	"github.com/Jose-Miguel7/api-pos-go/internal/database"
+)
 
 func InitMigrations() {
 	db, _ := database.GetDatabase()
